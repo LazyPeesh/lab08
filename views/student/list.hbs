@@ -1,0 +1,37 @@
+<div class="container col-md-8 text-center mt-3 mb-3">
+    <table class="table table-bordered">
+        <tr>
+            <th class="text text-primary" colspan="6">STUDENT LIST</th>
+            <th>
+                <a href="/student/add">Add</a>
+            </th>
+        </tr>
+        <tr>
+            <th>Full Name</th>
+            <th>Birth year</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Grade</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+
+        {{#each students }}
+        <tr>
+            <td>{{ name }}</td>
+            <td>{{ birth_year }}</td>
+            <td>{{ gender }}</td>
+            <td>{{ email }}</td>
+            <td>{{ grade }}</td>
+            <td>
+                <img src="{{image}}" alt="" width="150" height="150">
+            </td>
+            <td>
+                <a href="/student/edit/{{_id}}" class="btn btn-warning">Edit</a>
+                <a onclick="return confirm('Are you sure?')" href="/student/delete{{_id}}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+            
+        {{/each}}
+    </table>
+</div>

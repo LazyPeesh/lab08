@@ -7,21 +7,22 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 // 4A. Khai báo router tùy biến
-var studentRouter = require('/routes/student');
+var studentRouter = require('./routes/student');
+
+var app = express();
 
 var mongoose = require('mongoose');
 // console.log("Mongoose version: " + mongoose.version);
 // Note: Cần khai báo DB name trong database uri
-var uri = "mongodb://127.0.0.1:27017";
-var cloud = "mongodb+srv://mongo:mongo@cluster0.cdadmxu.mongodb.net/"
-mongoose.connect(uri)
+var uri = "mongodb://127.0.0.1:27017/gch1101";
+var cloud = "mongodb+srv://mongo:mongo@cluster0.cdadmxu.mongodb.net/gch1101"
+mongoose.connect(cloud)
   .then(() => { console.log("Connect to DB to succeed!") })
   .catch(() => { console.err(err) });
 
+//2. body-parser: lấy dữ liệu từ form
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
