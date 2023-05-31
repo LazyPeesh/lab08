@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 // 4A. Khai báo router tùy biến
 var studentRouter = require('./routes/student');
+var lecturerRouter = require('./routes/lecturer');
+var subjectRouter = require('./routes/subject');
 
 var app = express();
 
@@ -24,6 +26,10 @@ mongoose.connect(cloud)
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Sử dụng helper "equal" để so sánh
+var hbs = require('hbs');
+hbs.registerHelper('equal', require('handlebars-helper-equal'));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -38,6 +44,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 // 4B. Sử dụng router tùy biến
 app.use('/student', studentRouter);
+app.use('/lecturer', lecturerRouter);
+app.use('/subject', subjectRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
